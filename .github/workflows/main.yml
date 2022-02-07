@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version : 12.x
+      - run : npm i
+      
+      - name: Check Coverage TDD
+        run : npm run test:cov
+        
+      - name: Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: 54fbb25c-4811-4fa0-9ee8-5ed7c4879812
+          flags: unittests
