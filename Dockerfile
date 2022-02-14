@@ -23,4 +23,4 @@ WORKDIR /home/node
 
 
 
-CMD ["npm run start:dev"]
+CMD ["node", "dist/server.js"]
