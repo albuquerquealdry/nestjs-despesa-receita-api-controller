@@ -15,12 +15,25 @@ const sdk = new opentelemetry.NodeSDK({
 });
 
 sdk.start()
+const options = {
+  headers: {
+    'my-header': 'header-value',
+  },
+  url: 'http://onecatalogapp.com:30002/api/v2/spans',
+  // optional interceptor
+  getExportRequestHeaders: () => {
+    return {
+      'my-header': 'header-value',
+    }
+  }
+}
 const provider = new BasicTracerProvider({
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: (`${process.env.APPLICATION_NAME}`|| "ms-dreams-lucid"),
-    
-  }),
+  },
+  )
 });
+
 console.log('TRACING START')
 provider.register()
-provider.addSpanProcessor(new SimpleSpanProcessor(new ZipkinExporter()))
+provider.addSpanProcessor(new SimpleSpanProcessor(new ZipkinExporter(options)))
