@@ -1,24 +1,12 @@
-FROM node:14.17.0-alpine
+FROM node:12.18.1
+ENV NODE_ENV=production
 
-LABEL maintainer="dev@crowdlinker.com"
+WORKDIR /app
 
-# Create app directory
-WORKDIR /var/www/backend
+COPY ["package.json", "package-lock.json*", "./"]
 
-# Install app dependencies - For NPM use: `COPY package.json package-lock.lock ./`
-COPY package.json yarn.lock ./ 
-# For NPM use: `RUN npm ci`
-RUN yarn --pure-lockfile
+RUN npm install --production
 
-# Copy important files - Add ormconfig.ts here if using Typeorm
-COPY .eslintrc.js nest-cli.json tsconfig.json tsconfig.build.json ./
+COPY . .
 
-# Copy env
-COPY .env.docker /var/www/backend/.env
-
-# Add storage folder to the container (If you want to add other folder contents to the container)
-# ADD storage /var/www/backend/storage
-
-# Entrypoint command - Replace `"yarn"` with `"npm", "run"` if you are using NPM as your package manager.
-# You can update this to run other NodeJS apps
-CMD [ "yarn", "start:dev", "--preserveWatchOutput" ]
+CMD [ "node", "server.js" ]
