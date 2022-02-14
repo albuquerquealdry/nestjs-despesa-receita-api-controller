@@ -1,30 +1,28 @@
-FROM node:12.19.0-alpine3.9 AS development
+FROM node:16-alpine as builder
 
-WORKDIR /usr/src/app
+ENV NODE_ENV build
+
+USER node
+WORKDIR /home/node
 
 COPY package*.json ./
-COPY otel /usr/src/app
-RUN npm install glob rimraf
+RUN npm ci
 
-RUN npm install --only=development
+COPY --chown=node:node . .
+RUN npm run build \
+    && npm prune --production
 
-COPY . .
+# ---
 
-RUN npm run build
+FROM node:16-alpine
 
-FROM node:12.19.0-alpine3.9 as production
+ENV NODE_ENV production
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+USER node
+WORKDIR /home/node
 
-WORKDIR /usr/src/app
-COPY otel /usr/src/app
-COPY package*.json ./
+COPY --from=builder --chown=node:node /home/node/package*.json ./
+COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
+COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
-RUN npm install --only=production
-
-COPY . .
-
-COPY --from=development /usr/src/app/dist ./dist
-
-CMD ["node", "dist/main"]
+CMD ["node", "dist/server.js"]
