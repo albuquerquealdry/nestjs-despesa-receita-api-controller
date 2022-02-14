@@ -1,30 +1,13 @@
-FROM node:12.19.0-alpine3.9 AS development
+FROM node:14-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /workspace
 
-COPY package*.json ./
+COPY package.json  /workspace/
 
-RUN npm install glob rimraf
-
-RUN npm install --only=development
+RUN npm
 
 COPY . .
 
-RUN npm run build
+RUN npm i
 
-FROM node:12.19.0-alpine3.9 as production
-
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN npm install --only=production
-
-COPY . .
-
-COPY --from=development /usr/src/app/dist ./dist
-
-CMD ["node", "dist/main"]
+CMD ["npm", "start:dev"]
