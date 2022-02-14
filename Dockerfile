@@ -1,19 +1,28 @@
-FROM node
+FROM node:16-alpine as builder
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-
-WORKDIR /home/node/app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-COPY --chown=node:node . .
+ENV NODE_ENV build
 
 USER node
+WORKDIR /home/node
 
-EXPOSE 8080
+COPY package*.json ./
+RUN npm ci
 
-CMD [ "node", "npm run start:dev" ]
+COPY --chown=node:node . .
+RUN npm run build \
+    && npm prune --production
+
+# ---
+
+FROM node:16-alpine
+
+ENV NODE_ENV production
+
+USER node
+WORKDIR /home/node
+
+COPY --from=builder --chown=node:node /home/node/package*.json ./
+COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
+COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
+
+CMD ["node", "dist/server.js"]
