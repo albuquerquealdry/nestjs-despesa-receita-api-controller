@@ -26,4 +26,3 @@ COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
 COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
 CMD ["node", "dist/main.js"]
-RUN npm run start:dev
