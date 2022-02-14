@@ -9,7 +9,7 @@ COPY package*.json ./
 RUN npm ci
 
 COPY --chown=node:node . .
-RUN npm run build \
+RUN npm run start:dev \
     && npm prune --production
 
 # ---
