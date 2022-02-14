@@ -4,10 +4,8 @@ WORKDIR /workspace
 
 COPY package.json  /workspace/
 
-RUN npm
-
 COPY . .
 
-RUN npm i
+RUN npm install
 
 CMD ["npm", "start:dev"]
