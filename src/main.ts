@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-const trace = require ('../otel/tracing')
+const trace = require ('./v1/otel/tracing')
 
 const { countAllRequests } = require("../otel/monitoring");
 
