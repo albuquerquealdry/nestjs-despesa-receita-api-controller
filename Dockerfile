@@ -23,4 +23,4 @@ WORKDIR /home/node
 
 
 
-RUN ["npm run start:dev"]
+CMD ["npm run start:dev"]
