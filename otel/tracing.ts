@@ -7,6 +7,8 @@ const {LogLevel} = require('@opentelemetry/core')
 const {SimpleSpanProcessor, BasicTracerProvider} = require ('@opentelemetry/tracing')
 const { Resource } = require('@opentelemetry/resources');
 const { SemanticResourceAttributes } = require('@opentelemetry/semantic-conventions');
+
+
 const sdk = new opentelemetry.NodeSDK({
   traceExporter: new opentelemetry.tracing.ConsoleSpanExporter(),
   instrumentations: [getNodeAutoInstrumentations()]
@@ -19,4 +21,4 @@ const provider = new BasicTracerProvider({
   }),
 });
 provider.register()
-provider.addSpanProcessor(new SimpleSpanProcessor(new ZipkinExporter({serviceName : "teste"})))
+provider.addSpanProcessor(new SimpleSpanProcessor(new ZipkinExporter()))

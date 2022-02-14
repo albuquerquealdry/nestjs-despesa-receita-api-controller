@@ -1,8 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-const trace = require ('../tracing')
-const { ZipkinExporter } = require("@opentelemetry/exporter-zipkin");
-const { BatchSpanProcessor } = require("@opentelemetry/sdk-trace-base");
+const trace = require ('../otel/tracing')
+
 const { countAllRequests } = require("../otel/monitoring");
 
 async function bootstrap() {
