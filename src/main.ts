@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 const trace = require ('./v1/otel/tracing')
 
-const { countAllRequests } = require("../v1/otel/monitoring");
+const { countAllRequests } = require("./v1/otel/monitoring");
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
