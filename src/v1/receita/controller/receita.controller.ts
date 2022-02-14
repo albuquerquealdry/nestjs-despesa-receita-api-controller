@@ -1,7 +1,8 @@
 import { Controller,Post, Body, Delete, Param, Get } from '@nestjs/common';
 import { ReceitaDto } from '../dto/receitaDto';
 import { ReceitaService } from '../service/receita.service';
-
+const { ZipkinExporter } = require("@opentelemetry/exporter-zipkin");
+const { BatchSpanProcessor } = require("@opentelemetry/sdk-trace-base");
 @Controller()
 export class ReceitaController {
   constructor(private readonly receitaService: ReceitaService) {}
