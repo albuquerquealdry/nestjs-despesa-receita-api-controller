@@ -7,7 +7,7 @@ const exporter = new PrometheusExporter(
   },
   () => {
     console.log(
-      `prometheus scrape endpoint: http://localhost:${PrometheusExporter.DEFAULT_OPTIONS.port}${PrometheusExporter.DEFAULT_OPTIONS.endpoint}`,
+      `prometheus scrape endpoint: http://onecatalogapp.com:${PrometheusExporter.DEFAULT_OPTIONS.port}${PrometheusExporter.DEFAULT_OPTIONS.endpoint}`,
     );
   },
 );
