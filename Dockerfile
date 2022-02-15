@@ -25,4 +25,4 @@ COPY --from=builder --chown=node:node /home/node/package*.json ./
 COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
 COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
-ENTRYPOINT ["npm", "run", "start:dev"]
+ENTRYPOINT ["node","dist/main"]
