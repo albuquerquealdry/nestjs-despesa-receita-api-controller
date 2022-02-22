@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { DespesaSchema, Despesa, DespesaDocument } from '../schemas/despesaSchema';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+
 @Injectable()
 export class DespesaService {
   constructor(@InjectModel(Despesa.name) private userModel: Model<DespesaDocument>){}

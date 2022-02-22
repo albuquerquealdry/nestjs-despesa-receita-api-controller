@@ -1,6 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+<<<<<<< HEAD
 import * as Sentry from '@sentry/node';
+=======
+const trace = require ('./v1/otel/tracing')
+const { countAllRequests } = require("./v1/otel/monitoring");
+>>>>>>> ffe2d885a7683a3683bd130fc35ce61fe6c84870
 
 async function bootstrap() {
   Sentry.init({
