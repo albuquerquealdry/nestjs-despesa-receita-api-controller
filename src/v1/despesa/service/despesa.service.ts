@@ -32,12 +32,12 @@ export class DespesaService {
       });
     }
     findAll() {
-      return this.userModel.find()
-      .then((result) => {
-        return this.userModel.find()
-      }).catch((err) => {
-        throw new Error("Erro ao Listar as Despesas")
-      });
+      throw new Error('teste')
+      // .catch((result) => {
+      //   throw new Error('teste')
+      // }).catch((err) => {
+      //   throw new Error("Erro ao Listar as Despesas")
+      // });
     }
   
     findOne(id: string) {
