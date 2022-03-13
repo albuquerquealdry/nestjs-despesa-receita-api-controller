@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Check In') {
             steps {
-                sh './pipeline/checkin.groovy'
+                sh ' sudo ./pipeline/checkin.groovy'
             }
         }
         stage('Test') {
