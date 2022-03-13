@@ -7,6 +7,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { error } from 'console';
 const { ZipkinExporter } = require("@opentelemetry/exporter-zipkin");
 const { BatchSpanProcessor } = require("@opentelemetry/sdk-trace-base");
+
 @Injectable()
 export class ReceitaService {
   constructor(@InjectModel(Receita.name) private userModel: Model<ReceitaDocument>) {}
