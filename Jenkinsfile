@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Check In') {
             steps {
-                echo './pipeline/checkin.groovy'
+                load './pipeline/checkin.groovy'
             }
         }
         stage('Test') {
