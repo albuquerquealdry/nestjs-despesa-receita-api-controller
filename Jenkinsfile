@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Check In') {
             steps {
-                sh """ chmod 777 ./pipeline """
+                sh """ chmod 777 ./pipeline/checkin.groovy """
                 sh  """ ./pipeline/checkin.groovy """
             }
         }
