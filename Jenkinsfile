@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     stages {
-        node('linux') {
+        
         stage('Check In') {
+            node('linux') {
             steps {
                 sh 'npm install'
             }
