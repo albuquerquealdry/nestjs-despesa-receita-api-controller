@@ -2,13 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Check In') {
-            node {
+        stage('Check In')
                 steps {
-                sh """ chmod 777 ./pipeline/checkin.sh """
-                sh  """ ./pipeline/checkin.sh """
+                sh """ npm i"""
             
-            }
             }
         }
         stage('Test') {
