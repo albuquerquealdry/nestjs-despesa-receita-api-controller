@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Check In')
-                steps {
-                sh """ npm i"""
-            
+        stage('Check In') {
+            steps {
+                sh 'npm install'
             }
         }
         stage('Test') {
@@ -19,4 +18,4 @@ pipeline {
             }
         }
     }
-
+}
