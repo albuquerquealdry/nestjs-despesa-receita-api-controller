@@ -1,1 +1,1 @@
-sh" pwd"
+pwd
