@@ -3,9 +3,12 @@ pipeline {
 
     stages {
         stage('Check In') {
-            steps {
+            node {
+                steps {
                 sh """ chmod 777 ./pipeline/checkin.sh """
                 sh  """ ./pipeline/checkin.sh """
+            
+            }
             }
         }
         stage('Test') {
