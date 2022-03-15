@@ -1,1 +1,1 @@
-pwd
+npm install
