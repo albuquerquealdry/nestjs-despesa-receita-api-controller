@@ -1,1 +1,1 @@
-println "Teste"
+sh (script 'npm install')
