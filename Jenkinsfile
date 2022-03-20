@@ -5,7 +5,6 @@ pipeline {
         
         stage('Check In') {
             steps {
-                agent { docker 'node' }
                 sh 'npm install'
             }
         }
