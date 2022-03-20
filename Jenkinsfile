@@ -2,14 +2,14 @@ pipeline {
     agent any 
     tools {nodejs "node"}
     stages {
-        stage('Check In') {
+        stage('Delete lock') {
             steps {
-                sh 'npm install'
+                sh 'rm package-lock.json'
             }
         }
-        stage('Test') {
+        stage('Teste Package') {
             steps {
-                echo 'Testing..'
+                sh 'npm install'
             }
         }
         stage('Deploy') {
