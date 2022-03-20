@@ -1,1 +1,1 @@
-sh (script 'npm install')
+npm install
