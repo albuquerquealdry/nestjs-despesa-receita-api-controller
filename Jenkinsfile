@@ -1,6 +1,6 @@
 pipeline {
     agent any 
-    tools {node}
+    tools {nodejs "latest"}
     stages {
         stage('Check In') {
             steps {
